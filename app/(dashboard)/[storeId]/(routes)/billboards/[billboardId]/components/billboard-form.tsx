@@ -24,7 +24,6 @@ import { Input } from "@/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Bilboard } from "@prisma/client";
 import AlertModal from "@/components/modals/alert-modal";
-import { ApiAlert } from "@/components/ui/api-alert";
 import { UseOrigin } from "@/hooks/use-origin";
 import ImageUpload from "@/components/ui/image-upload";
 
@@ -45,7 +44,6 @@ const BillboardForm: React.FC<BillboardFormProps> = ({ initialData }) => {
 
   const params = useParams();
   const router = useRouter();
-  const origin = UseOrigin();
 
   const title = initialData ? "Edit Billboard" : "Create Billboard";
   const description = initialData ? "Edit a Billboard" : "Add a new Billboard";
@@ -62,7 +60,7 @@ const BillboardForm: React.FC<BillboardFormProps> = ({ initialData }) => {
     },
   });
   const onSubmit = async (data: SettingFromValues) => {
-    console.log(data)
+    console.log(data);
     try {
       setloading(true);
       if (initialData) {
@@ -74,6 +72,7 @@ const BillboardForm: React.FC<BillboardFormProps> = ({ initialData }) => {
         await axios.post(`/api/${params?.storeId}/billboards`, data);
       }
       router.refresh();
+      router.push(`/${params.storeId}/billboards`);
       toast.success(toastMessage);
     } catch (error) {
       toast.error(`Something Went Wrong-${error}`);
@@ -92,7 +91,9 @@ const BillboardForm: React.FC<BillboardFormProps> = ({ initialData }) => {
       router.push("/");
       toast.success("Billboard Deleted!");
     } catch (error) {
-      toast.error("Make Sue to remove all categories using this billboard first!");
+      toast.error(
+        "Make Sue to remove all categories using this billboard first!"
+      );
     } finally {
       setloading(false);
       setopen(false);
@@ -167,12 +168,6 @@ const BillboardForm: React.FC<BillboardFormProps> = ({ initialData }) => {
           </Button>
         </form>
       </Form>
-      <Separator />
-      <ApiAlert
-        title="NEXT_PUBLIC_API_URL"
-        description={`${origin}/api/${params.storeId}`}
-        variant="public"
-      />
     </>
   );
 };

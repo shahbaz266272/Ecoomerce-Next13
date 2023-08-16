@@ -8,7 +8,8 @@ export async function POST(req: Request, { params }: { params: { storeId: string
         const { userId } = auth()
 
         const body = await req.json()
-        const { label, imageUrl } = body?.values
+        console.log(body)
+        const { label, imageUrl } = body
 
         if (!userId) {
             return new NextResponse("UnAuthenticated!", { status: 401 })
