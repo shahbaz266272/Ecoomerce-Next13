@@ -5,7 +5,7 @@ import { toast } from "react-hot-toast";
 import { useParams, useRouter } from "next/navigation";
 import axios from "axios";
 
-import { BillBoardColumn } from "./columns";
+import { CategoryColumn } from "./columns";
 
 import {
   DropdownMenu,
@@ -18,7 +18,7 @@ import { Button } from "@/components/ui/button";
 import AlertModal from "@/components/modals/alert-modal";
 
 interface CellActionsProps {
-  data: BillBoardColumn;
+  data: CategoryColumn;
 }
 
 const CellActions: React.FC<CellActionsProps> = ({ data }) => {
@@ -36,13 +36,13 @@ const CellActions: React.FC<CellActionsProps> = ({ data }) => {
   const onDelete = async () => {
     try {
       setloading(true);
-      await axios.delete(`/api/${params?.storeId}/billboards/${data.id}`);
+      await axios.delete(`/api/${params?.storeId}/categories/${data.id}`);
       router.refresh();
       // router.push("/");
-      toast.success("Billboard Deleted!");
+      toast.success("Category Deleted!");
     } catch (error) {
       toast.error(
-        "Make Sue to remove all categories using this billboard first!"
+        "Make Sue to remove all products using this billboard first!"
       );
     } finally {
       setloading(false);
@@ -69,7 +69,7 @@ const CellActions: React.FC<CellActionsProps> = ({ data }) => {
           <DropdownMenuLabel>Actions</DropdownMenuLabel>
           <DropdownMenuItem
             onClick={() =>
-              router.push(`/${params.storeId}/billboards/${data.id} `)
+              router.push(`/${params.storeId}/categories/${data.id} `)
             }
           >
             <Edit className="mr-2 h-4 w-4" />
