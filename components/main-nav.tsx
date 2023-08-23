@@ -30,6 +30,16 @@ const MainNavigation = ({
       active: pathnames === `/${params.storeId}/categories`,
     },
     {
+      href: `/${params.storeId}/sizes`,
+      label: "Sizes",
+      active: pathnames === `/${params.storeId}/sizes`,
+    },
+    {
+      href: `/${params.storeId}/colors`,
+      label: "Colors",
+      active: pathnames === `/${params.storeId}/colors`,
+    },
+    {
       href: `/${params.storeId}/settings`,
       label: "Settings",
       active: pathnames === `/${params.storeId}/settings`,
