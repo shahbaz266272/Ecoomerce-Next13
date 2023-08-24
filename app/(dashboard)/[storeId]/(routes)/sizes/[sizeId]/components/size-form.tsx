@@ -129,7 +129,7 @@ const SizeForm: React.FC<SizesFormProps> = ({ initialData }) => {
                   <FormControl>
                     <Input
                       disabled={loading}
-                      placeholder="Billboard Label..."
+                      placeholder="size name..."
                       {...field}
                     />
                   </FormControl>
@@ -146,7 +146,7 @@ const SizeForm: React.FC<SizesFormProps> = ({ initialData }) => {
                   <FormControl>
                     <Input
                       disabled={loading}
-                      placeholder="Billboard Label..."
+                      placeholder="size value..."
                       {...field}
                     />
                   </FormControl>
